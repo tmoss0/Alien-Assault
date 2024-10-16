@@ -10,4 +10,8 @@ func _physics_process(delta):
 	global_position.x += speed * delta
 	
 func _on_screen_exited():
+	queue_free() # Deletes the current node
+
+func _on_area_entered(area):
 	queue_free()
+	area.die()
