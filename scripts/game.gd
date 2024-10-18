@@ -3,6 +3,10 @@ extends Node2D
 var lives = 3
 var score = 0
 @onready var player = $Player # reference to player that is in the Scene
+@onready var hud = $UI/HUD # gets the child scene of the UI node
+
+func _ready():
+	hud.set_score_label(score)
 
 func _on_deathzone_area_entered(area):
 	area.die()
@@ -22,4 +26,4 @@ func _on_enemy_spawner_enemy_spawn(enemy_instance):
 
 func _on_enemy_died():
 	score += 100
-	print("Score: " + str(score))
+	hud.set_score_label(score)
