@@ -5,6 +5,9 @@ var score = 0
 @onready var player = $Player # reference to player that is in the Scene
 @onready var hud = $UI/HUD # gets the child scene of the UI node
 @onready var ui = $UI
+@onready var enemy_hit_sound = $EnemyHitSound
+@onready var played_damaged_sound = $PlayerDamagedSound
+
 var game_over_scene = preload("res://scenes/game_over_screen.tscn")
 
 func _ready():
@@ -17,6 +20,7 @@ func _on_deathzone_area_entered(area):
 func _on_player_took_damage():
 	lives -= 1
 	hud.set_lives_label(lives)
+	played_damaged_sound.play()
 	if lives == 0:
 		player.die()
 		await get_tree().create_timer(1).timeout
@@ -32,3 +36,4 @@ func _on_enemy_spawner_enemy_spawn(enemy_instance):
 func _on_enemy_died():
 	score += 100
 	hud.set_score_label(score)
+	enemy_hit_sound.play()
