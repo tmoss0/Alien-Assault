@@ -1,0 +1,97 @@
+[gd_scene load_steps=6 format=3 uid="uid://cskwppvu6017f"]
+
+[ext_resource type="Script" path="res://scripts/game_over_screen.gd" id="1_kenxo"]
+[ext_resource type="FontFile" uid="uid://ch2wjfl1n1ruv" path="res://assets/font/Kenney Blocks.ttf" id="1_xykad"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dc6i"]
+bg_color = Color(0.43, 0.0989, 0.0989, 0.592157)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_yr7xu"]
+font = ExtResource("1_xykad")
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_moqkc"]
+font = ExtResource("1_xykad")
+font_size = 48
+font_color = Color(0.890333, 1, 0.06, 1)
+
+[node name="GameOverScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kenxo")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -367.0
+offset_top = -157.0
+offset_right = 367.0
+offset_bottom = 157.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0dc6i")
+
+[node name="GameOver" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -185.0
+offset_top = -123.0
+offset_right = 182.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_yr7xu")
+
+[node name="Score" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -11.5
+offset_right = 48.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "SCORE: 9999
+"
+label_settings = SubResource("LabelSettings_moqkc")
+
+[node name="RestartButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -134.0
+offset_top = 43.0
+offset_right = 128.0
+offset_bottom = 111.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_xykad")
+theme_override_font_sizes/font_size = 40
+text = "RESTART
+"
+
+[connection signal="pressed" from="Panel/RestartButton" to="." method="_on_restart_button_pressed"]
